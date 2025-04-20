@@ -19,13 +19,13 @@ class StarterInstaller extends AbstractInstaller
 
     public function install(): void
     {
-        info('🚀 Installing Edge Starter Kit');
+        info('🚀 Installing Frontier Starter Kit');
 
         $this->selectComponents();
         $this->confirmInstallation();
         $this->executeInstallation();
 
-        note('Edge installation completed!');
+        note('Frontier installation completed!');
     }
 
     protected function selectComponents(): void

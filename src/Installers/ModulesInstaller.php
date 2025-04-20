@@ -8,15 +8,14 @@ use function Laravel\Prompts\{info, multiselect, select, spin, confirm, note, te
 
 class ModulesInstaller extends AbstractInstaller
 {
+    protected array $commands = [
+        'composer require frontier/modules',
+    ];
+
     public function install(): void
     {
-        info('🚀 Installing Edge Starter Kit');
-
-        $commands = [
-            'composer require edge/actions',
-        ];
-
-        $this->runCommands($commands);
-        info('Actions installed successfully.');
+        info('🚀 Installing Frontier Modules');
+        $this->runCommands($this->commands);
+        info('Modules installed successfully.');
     }
 }
