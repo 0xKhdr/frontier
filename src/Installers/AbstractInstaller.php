@@ -2,8 +2,8 @@
 
 namespace Frontier\Installers;
 
+use Frontier\Traits\InteractsWithInstaller;
 use Illuminate\Console\Command;
-use Modules\Edge\Traits\InteractsWithInstaller;
 
 abstract class AbstractInstaller implements Contracts\Installer
 {
