@@ -1,0 +1,23 @@
+{
+	"name": "frontier/frontier",
+	"description": "Laravel Frontier Starter Kit",
+	"type": "library",
+	"version": "1.0",
+	"license": "MIT",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Frontier\\": "src/",
+			"Frontier\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+                "Frontier\\Providers\\ServiceProvider",
+				"Frontier\\Providers\\StarterServiceProvider"
+			]
+		}
+	}
+}
