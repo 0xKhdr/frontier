@@ -1,6 +1,6 @@
 <?php
 
-namespace Frontier\Installers\Contracts;
+namespace Frontier\Contracts;
 
 interface Installer
 {

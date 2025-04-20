@@ -1,6 +1,6 @@
 <?php
 
-namespace Frontier\Installers;
+namespace Frontier;
 
 use function Laravel\Prompts\info;
 

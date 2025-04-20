@@ -1,6 +1,6 @@
 <?php
 
-namespace Frontier\Installers;
+namespace Frontier;
 
 use Frontier\Traits\InteractsWithInstaller;
 use Illuminate\Console\Command;

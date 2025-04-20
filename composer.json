@@ -21,8 +21,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-                "Frontier\\Providers\\ServiceProvider",
-				"Frontier\\Providers\\StarterServiceProvider"
+                "Frontier\\Providers\\ServiceProvider"
 			]
 		}
 	}

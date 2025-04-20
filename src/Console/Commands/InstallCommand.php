@@ -2,10 +2,8 @@
 
 namespace Frontier\Console\Commands;
 
-use Frontier\Installers\StarterInstaller;
+use Frontier\FrontierInstaller;
 use Illuminate\Console\Command;
-
-use function Laravel\Prompts\info;
 
 class InstallCommand extends Command
 {
@@ -15,6 +13,6 @@ class InstallCommand extends Command
 
     public function handle(): void
     {
-        StarterInstaller::make($this)->install();
+        FrontierInstaller::make($this)->install();
     }
 }

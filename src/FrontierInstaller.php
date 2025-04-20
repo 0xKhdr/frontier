@@ -1,16 +1,15 @@
 <?php
 
-namespace Frontier\Installers;
+namespace Frontier;
 
 use Frontier\Enums\Component;
-
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\note;
 use function Laravel\Prompts\spin;
 
-class StarterInstaller extends AbstractInstaller
+class FrontierInstaller extends AbstractInstaller
 {
     protected array $components = [
         Component::Actions->value => 'Action classes for business logic',
