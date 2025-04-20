@@ -10,12 +10,12 @@ use function Laravel\Prompts\{info, multiselect, select, spin, confirm, note, te
 class ActionsInstaller extends AbstractInstaller
 {
     protected array $commands = [
-        'composer require edge/actions',
+        'composer require frontier/actions',
     ];
 
     public function install(): void
     {
-        info('🚀 Installing Edge Starter Kit');
+        info('🚀 Installing Frontier Actions');
         $this->runCommands($this->commands);
         info('Actions installed successfully.');
     }
