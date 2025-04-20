@@ -11,9 +11,9 @@ class StarterServiceProvider extends ServiceProvider
         InstallCommand::class,
     ];
 
-	public function register(): void {}
+    public function register(): void {}
 
-	public function boot(): void
+    public function boot(): void
     {
         $this->commands($this->commands);
     }

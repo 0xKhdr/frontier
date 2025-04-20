@@ -2,10 +2,13 @@
 
 namespace Frontier\Installers;
 
-use Illuminate\Console\Command;
 use Frontier\Enums\Component;
-use Symfony\Component\Process\Process;
-use function Laravel\Prompts\{info, multiselect, select, spin, confirm, note, text};
+
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\multiselect;
+use function Laravel\Prompts\note;
+use function Laravel\Prompts\spin;
 
 class StarterInstaller extends AbstractInstaller
 {
@@ -47,7 +50,7 @@ class StarterInstaller extends AbstractInstaller
             ),
         );
 
-        if (!$confirmed) {
+        if (! $confirmed) {
             $this->command->info('Installation cancelled.');
             exit;
         }
@@ -59,12 +62,9 @@ class StarterInstaller extends AbstractInstaller
             function () {
                 foreach ($this->selectedComponents as $component) {
                     match ($component) {
-                        Component::Actions->value
-                            => ActionsInstaller::make($this->command)->install(),
-                        Component::Repositories->value
-                            => RepositoriesInstaller::make($this->command)->install(),
-                        Component::Modules->value
-                            => ModulesInstaller::make($this->command)->install(),
+                        Component::Actions->value => ActionsInstaller::make($this->command)->install(),
+                        Component::Repositories->value => RepositoriesInstaller::make($this->command)->install(),
+                        Component::Modules->value => ModulesInstaller::make($this->command)->install(),
                     };
                 }
             },

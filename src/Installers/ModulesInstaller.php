@@ -2,9 +2,7 @@
 
 namespace Frontier\Installers;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use function Laravel\Prompts\{info, multiselect, select, spin, confirm, note, text};
+use function Laravel\Prompts\info;
 
 class ModulesInstaller extends AbstractInstaller
 {

@@ -2,7 +2,6 @@
 
 namespace Frontier\Traits;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
 trait InteractsWithInstaller
