@@ -9,7 +9,7 @@ use function Laravel\Prompts\{info, multiselect, select, spin, confirm, note, te
 class ModulesInstaller extends AbstractInstaller
 {
     protected array $commands = [
-        'composer require frontier/modules',
+        'composer require frontier/module',
     ];
 
     public function install(): void

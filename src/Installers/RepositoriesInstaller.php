@@ -10,7 +10,7 @@ use function Laravel\Prompts\{info, multiselect, select, spin, confirm, note, te
 class RepositoriesInstaller extends AbstractInstaller
 {
     protected array $commands = [
-        'composer require frontier/repositories',
+        'composer require frontier/repository',
     ];
 
     public function install(): void
