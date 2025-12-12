@@ -6,7 +6,8 @@
   "keywords": [
     "laravel",
     "starter-kit",
-    "boilerplate"
+    "boilerplate",
+    "frontier"
   ],
   "authors": [
     {
@@ -17,11 +18,22 @@
   ],
   "require": {
     "php": ">=8.2",
+    "illuminate/console": "^10.0|^11.0|^12.0",
     "illuminate/support": "^10.0|^11.0|^12.0",
-    "illuminate/console": "^10.0|^11.0|^12.0"
+    "laravel/prompts": "^0.1|^0.2|^0.3",
+    "symfony/process": "^6.0|^7.0"
   },
   "require-dev": {
-    "laravel/pint": "^v1.22.0"
+    "laravel/pint": "^1.22",
+    "orchestra/testbench": "^9.0|^10.0",
+    "pestphp/pest": "^3.0",
+    "pestphp/pest-plugin-laravel": "^3.0",
+    "rector/rector": "^2.0"
+  },
+  "suggest": {
+    "frontier/action": "Action pattern implementation",
+    "frontier/repository": "Repository pattern implementation",
+    "frontier/module": "Modular architecture support"
   },
   "autoload": {
     "psr-4": {
@@ -31,6 +43,19 @@
   "autoload-dev": {
     "psr-4": {
       "Frontier\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/pest",
+    "test:coverage": "vendor/bin/pest --coverage",
+    "lint": "vendor/bin/pint",
+    "lint:test": "vendor/bin/pint --test",
+    "rector": "vendor/bin/rector process",
+    "rector:dry": "vendor/bin/rector process --dry-run"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
     }
   },
   "extra": {

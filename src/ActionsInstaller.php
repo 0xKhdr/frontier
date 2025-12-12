@@ -1,15 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Frontier;
 
 use function Laravel\Prompts\info;
 
-class ActionsInstaller extends AbstractInstaller
+/**
+ * Installer for the Frontier Actions component.
+ */
+class ActionsInstaller extends BaseInstaller
 {
+    /** @var array<int, string> Commands to execute */
     protected array $commands = [
         'composer require frontier/action',
     ];
 
+    /**
+     * Install the Actions component.
+     */
     public function install(): void
     {
         info('🚀 Installing Frontier Actions');

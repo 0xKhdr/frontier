@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Frontier;
 
 use Frontier\Enums\Component;
@@ -10,16 +12,24 @@ use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\note;
 use function Laravel\Prompts\spin;
 
-class FrontierInstaller extends AbstractInstaller
+/**
+ * Main Frontier installer that orchestrates component installation.
+ */
+class FrontierInstaller extends BaseInstaller
 {
+    /** @var array<string, string> Available components and their descriptions */
     protected array $components = [
         Component::Actions->value => 'Action classes for business logic',
         Component::Repositories->value => 'Database abstraction layer using repositories',
         Component::Modules->value => 'Structure for using modules',
     ];
 
+    /** @var array<int, string> User-selected components */
     protected array $selectedComponents = [];
 
+    /**
+     * Execute the Frontier installation.
+     */
     public function install(): void
     {
         info('🚀 Installing Frontier Starter Kit');
@@ -31,6 +41,9 @@ class FrontierInstaller extends AbstractInstaller
         note('Frontier installation completed!');
     }
 
+    /**
+     * Prompt user to select components.
+     */
     protected function selectComponents(): void
     {
         $this->selectedComponents = multiselect(
@@ -41,6 +54,9 @@ class FrontierInstaller extends AbstractInstaller
         );
     }
 
+    /**
+     * Confirm the installation with the user.
+     */
     protected function confirmInstallation(): void
     {
         $confirmed = confirm(
@@ -56,10 +72,13 @@ class FrontierInstaller extends AbstractInstaller
         }
     }
 
+    /**
+     * Execute installation for each selected component.
+     */
     protected function executeInstallation(): void
     {
         spin(
-            function () {
+            callback: function (): void {
                 foreach ($this->selectedComponents as $component) {
                     match ($component) {
                         Component::Actions->value => ActionsInstaller::make($this->command)->install(),
@@ -68,7 +87,7 @@ class FrontierInstaller extends AbstractInstaller
                     };
                 }
             },
-            'Installing components...'
+            message: 'Installing components...'
         );
     }
 }

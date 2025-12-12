@@ -8,6 +8,7 @@
   <a href="#installation">Installation</a> •
   <a href="#packages">Packages</a> •
   <a href="#quick-start">Quick Start</a> •
+  <a href="#development">Development</a> •
   <a href="#documentation">Documentation</a>
 </p>
 
@@ -24,6 +25,8 @@
 | **Best Practices Built-in** | Action, Repository, and Module patterns |
 | **Laravel Native** | Full support for Laravel 10, 11, and 12 |
 | **Artisan Generators** | Scaffold components with familiar commands |
+| **Strict Types** | All packages use `declare(strict_types=1)` |
+| **Pest Testing** | Modern testing framework included |
 
 ---
 
@@ -97,12 +100,14 @@ php artisan frontier:action CreateUser
 ```php
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Models\User;
-use Frontier\Actions\AbstractAction;
+use Frontier\Actions\BaseAction;
 
-class CreateUserAction extends AbstractAction
+class CreateUserAction extends BaseAction
 {
     public function handle(array $data): User
     {
@@ -133,6 +138,8 @@ php artisan frontier:repository UserRepository
 
 ```php
 <?php
+
+declare(strict_types=1);
 
 namespace App\Repositories;
 
@@ -200,6 +207,52 @@ php artisan make:migration create_users_table --module=user-management
 
 ---
 
+## 🛠️ Development
+
+All Frontier packages follow consistent development practices:
+
+### Running Tests
+
+```bash
+composer test
+```
+
+### Code Linting
+
+```bash
+composer lint        # Fix code style with Pint
+composer lint:test   # Check code style
+```
+
+### Rector Refactoring
+
+```bash
+composer rector      # Apply automated refactorings
+composer rector:dry  # Preview changes without applying
+```
+
+### Package Structure
+
+Each package follows the standardized structure defined in [PACKAGE_GUIDE.md](docs/PACKAGE_GUIDE.md):
+
+```
+packages/frontier-*/
+├── composer.json
+├── phpunit.xml
+├── rector.php
+├── src/
+│   ├── Contracts/
+│   ├── Providers/
+│   └── ...
+└── tests/
+    ├── Pest.php
+    ├── TestCase.php
+    ├── Unit/
+    └── Feature/
+```
+
+---
+
 ## 📖 Documentation
 
 Detailed documentation for each package:
@@ -237,6 +290,14 @@ graph TB
 | Action | `frontier/action` | Single-purpose classes for business operations |
 | Repository | `frontier/repository` | Abstract data access from business logic |
 | Module | `frontier/module` | Organize code by domain/feature |
+
+### Key Classes
+
+| Old Name | New Name | Package |
+|----------|----------|---------|
+| `AbstractAction` | `BaseAction` | frontier/action |
+| `AbstractRepository` | `BaseRepository` | frontier/repository |
+| `AbstractInstaller` | `BaseInstaller` | frontier/frontier |
 
 ---
 
@@ -281,6 +342,8 @@ php artisan frontier:install                    # Interactive installer
 
 ```bash
 php artisan frontier:action {name}              # Create action class
+php artisan frontier:action {name} --module     # Interactive module selection
+php artisan frontier:action {name} --module=xyz # Create in specific module
 ```
 
 ### Repository Package
@@ -307,8 +370,9 @@ Contributions are welcome! Please follow these guidelines:
 
 1. Follow PSR-12 coding standards
 2. Use Laravel Pint for code styling
-3. Write tests for new features
+3. Write tests for new features (using Pest)
 4. Update documentation as needed
+5. Add strict types to all PHP files
 
 ---
 

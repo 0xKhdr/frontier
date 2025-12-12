@@ -1,15 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Frontier;
 
 use function Laravel\Prompts\info;
 
-class RepositoriesInstaller extends AbstractInstaller
+/**
+ * Installer for the Frontier Repositories component.
+ */
+class RepositoriesInstaller extends BaseInstaller
 {
+    /** @var array<int, string> Commands to execute */
     protected array $commands = [
         'composer require frontier/repository',
     ];
 
+    /**
+     * Install the Repositories component.
+     */
     public function install(): void
     {
         info('🚀 Installing Frontier Repositories');
