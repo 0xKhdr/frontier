@@ -40,6 +40,13 @@
 
 ---
 
+## 🔧 Requirements
+
+- PHP >= 8.2
+- Laravel 10.x, 11.x, or 12.x
+
+---
+
 ## 🚀 Installation
 
 ### Full Installation
@@ -140,7 +147,7 @@ php artisan frontier:action {name} --module=xyz
 
 ```bash
 php artisan frontier:repository {name}
-php artisan frontier:cacheable-repository {name}
+php artisan frontier:repository-cache {name}
 php artisan frontier:repository-interface {name}
 php artisan frontier:repository-action {name}
 ```
@@ -192,12 +199,6 @@ composer rector:dry    # Preview refactorings
 
 ---
 
-## 🔧 Requirements
-
-- PHP >= 8.2
-- Laravel 10.x, 11.x, or 12.x
-
----
 
 ## 🤝 Contributing
 
