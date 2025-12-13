@@ -86,27 +86,23 @@ $user = CreateUser::exec($data);
 ### Repository Pattern
 
 ```bash
-php artisan frontier:repository UserRepository
-php artisan frontier:cacheable-repository CachedUserRepository
+php artisan frontier:repository UserRepositoryEloquent
+php artisan frontier:repository-cache UserRepositoryCache
 ```
 
 ```php
 use Frontier\Repositories\BaseRepository;
 
-class UserRepository extends BaseRepository
+class UserRepositoryEloquent extends BaseRepository
 {
-    public function __construct(User $model)
-    {
-        parent::__construct($model);
-    }
 }
 ```
 
 ```php
 // Binding in ServiceProvider
-$this->app->bind(UserRepositoryInterface::class, function ($app) {
-    return new CachedUserRepository(
-        $app->make(UserRepository::class)
+$this->app->bind(UserRepository::class, function ($app) {
+    return new UserRepositoryCache(
+        new UserRepositoryEloquent(new User())
     );
 });
 
@@ -174,20 +170,11 @@ php artisan make:* --module={name}
 │ frontier/action │  │frontier/repository│ │ frontier/modular │
 │                 │  │                   │ │                 │
 │ • BaseAction    │  │ • BaseRepository  │ │ • internachi/   │
-│ • EloquentAction│  │ • BaseCacheableRep│ │   modular       │
+│ • EloquentAction│  │ • BaseRepositoryCache│ │   modular       │
 │ • Eloquent/*    │  │ • Repository      │ │   integration   │
 │                 │  │   Contract        │ └─────────────────┘
 └─────────────────┘  └─────────────────┘
 ```
-
-### Key Classes
-
-| Package | Old Name | New Name |
-|---------|----------|----------|
-| frontier | AbstractInstaller | BaseInstaller |
-| frontier/action | AbstractAction | BaseAction |
-| frontier/repository | BaseRepositoryEloquent | BaseRepository |
-| frontier/repository | BaseCacheableRepositoryEloquent | BaseCacheableRepository |
 
 ---
 
@@ -203,44 +190,12 @@ composer rector        # Apply refactorings
 composer rector:dry    # Preview refactorings
 ```
 
-### Package Structure
-
-Each package follows [PACKAGE_GUIDE.md](docs/PACKAGE_GUIDE.md):
-
-```
-packages/frontier-*/
-├── composer.json
-├── phpunit.xml
-├── rector.php
-├── config/           # (repository only)
-├── stubs/
-├── src/
-│   ├── Contracts/
-│   ├── Providers/
-│   ├── Console/Commands/
-│   └── Traits/
-└── tests/
-    ├── Pest.php
-    ├── TestCase.php
-    ├── Unit/
-    └── Feature/
-```
-
 ---
 
 ## 🔧 Requirements
 
 - PHP >= 8.2
 - Laravel 10.x, 11.x, or 12.x
-
----
-
-## 📖 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [PACKAGE_GUIDE.md](docs/PACKAGE_GUIDE.md) | Package structure standards |
-| Package READMEs | Usage documentation |
 
 ---
 
