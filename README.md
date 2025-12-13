@@ -36,7 +36,7 @@
 | **frontier** | Meta-package installer | Interactive component selection |
 | **frontier/action** | Action pattern | Single-purpose classes, Eloquent actions, module support |
 | **frontier/repository** | Repository pattern | CRUD abstraction, **caching decorator**, interface generation |
-| **frontier/module** | Modular architecture | internachi/modular integration |
+| **frontier/modular** | Modular architecture | internachi/modular integration (Note: This package is a wrapper around [internachi/modular](https://github.com/InterNACHI/modular) with no extra features for now) |
 
 ---
 
@@ -54,7 +54,7 @@ php artisan frontier:install
 ```bash
 composer require frontier/action
 composer require frontier/repository
-composer require frontier/module
+composer require frontier/modular
 ```
 
 ---
@@ -171,7 +171,7 @@ php artisan make:* --module={name}
          ┌─────────────────────┼─────────────────────┐
          ▼                     ▼                     ▼
 ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│ frontier/action │  │frontier/repository│ │ frontier/module │
+│ frontier/action │  │frontier/repository│ │ frontier/modular │
 │                 │  │                   │ │                 │
 │ • BaseAction    │  │ • BaseRepository  │ │ • internachi/   │
 │ • EloquentAction│  │ • BaseCacheableRep│ │   modular       │

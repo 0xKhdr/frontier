@@ -19,9 +19,9 @@ class FrontierInstaller extends BaseInstaller
 {
     /** @var array<string, string> Available components and their descriptions */
     protected array $components = [
-        Component::Actions->value => 'Action classes for business logic',
-        Component::Repositories->value => 'Database abstraction layer using repositories',
-        Component::Modules->value => 'Structure for using modules',
+        Component::Action->value => 'Action classes for business logic',
+        Component::Repository->value => 'Database abstraction layer using repositories',
+        Component::Modular->value => 'Structure for using modules',
     ];
 
     /** @var array<int, string> User-selected components */
@@ -81,9 +81,9 @@ class FrontierInstaller extends BaseInstaller
             callback: function (): void {
                 foreach ($this->selectedComponents as $component) {
                     match ($component) {
-                        Component::Actions->value => ActionsInstaller::make($this->command)->install(),
-                        Component::Repositories->value => RepositoriesInstaller::make($this->command)->install(),
-                        Component::Modules->value => ModulesInstaller::make($this->command)->install(),
+                        Component::Action->value => ActionInstaller::make($this->command)->install(),
+                        Component::Repository->value => RepositoryInstaller::make($this->command)->install(),
+                        Component::Modular->value => ModularInstaller::make($this->command)->install(),
                     };
                 }
             },

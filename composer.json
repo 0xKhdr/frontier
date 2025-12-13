@@ -33,7 +33,7 @@
   "suggest": {
     "frontier/action": "Action pattern implementation",
     "frontier/repository": "Repository pattern implementation",
-    "frontier/module": "Modular architecture support"
+    "frontier/modular": "Modular architecture support"
   },
   "autoload": {
     "psr-4": {

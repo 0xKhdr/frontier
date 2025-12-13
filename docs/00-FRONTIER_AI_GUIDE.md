@@ -33,9 +33,9 @@ src/
 │   └── InteractsWithInstaller.php # Shared installer functionality
 ├── AbstractInstaller.php          # Base installer class
 ├── FrontierInstaller.php          # Main orchestrator
-├── ActionsInstaller.php           # Actions pattern installer
-├── ModulesInstaller.php           # Modules structure installer
-└── RepositoriesInstaller.php      # Repository pattern installer
+├── ActionInstaller.php            # Actions pattern installer
+├── ModularInstaller.php           # Modules structure installer
+└── RepositoryInstaller.php        # Repository pattern installer
 ```
 
 ### Design Patterns Used
@@ -114,9 +114,9 @@ flowchart TD
     F -->|No| G[Exit]
     F -->|Yes| H[executeInstallation]
     H --> I{For each component}
-    I --> J[ActionsInstaller::install]
-    I --> K[RepositoriesInstaller::install]
-    I --> L[ModulesInstaller::install]
+    I --> J[ActionInstaller::install]
+    I --> K[RepositoryInstaller::install]
+    I --> L[ModularInstaller::install]
     J & K & L --> M[runCommands - execute composer require]
     M --> N[Installation Complete]
 ```
@@ -168,9 +168,9 @@ Provides `runCommands()` method that:
 ```php
 enum Component: string
 {
-    case Actions = 'Actions';
-    case Repositories = 'Repositories';
-    case Modules = 'Modules';
+    case Action = 'Action';
+    case Repository = 'Repository';
+    case Modular = 'Modular';
     case NewComponent = 'NewComponent'; // Add here
 }
 ```
@@ -229,9 +229,9 @@ The package is auto-discovered via `composer.json`:
 | [InstallCommand.php](file:///var/www/html/rai/up/frontier/src/Console/Commands/InstallCommand.php) | Artisan command entry point | `handle()` |
 | [FrontierInstaller.php](file:///var/www/html/rai/up/frontier/src/FrontierInstaller.php) | Main installation orchestrator | `install()`, `selectComponents()`, `executeInstallation()` |
 | [AbstractInstaller.php](file:///var/www/html/rai/up/frontier/src/AbstractInstaller.php) | Base installer class | `make()` |
-| [ActionsInstaller.php](file:///var/www/html/rai/up/frontier/src/ActionsInstaller.php) | Actions component installer | `install()` |
-| [RepositoriesInstaller.php](file:///var/www/html/rai/up/frontier/src/RepositoriesInstaller.php) | Repository pattern installer | `install()` |
-| [ModulesInstaller.php](file:///var/www/html/rai/up/frontier/src/ModulesInstaller.php) | Modular structure installer | `install()` |
+| [ActionInstaller.php](file:///var/www/html/rai/up/frontier/src/ActionInstaller.php) | Actions component installer | `install()` |
+| [RepositoryInstaller.php](file:///var/www/html/rai/up/frontier/src/RepositoryInstaller.php) | Repository pattern installer | `install()` |
+| [ModularInstaller.php](file:///var/www/html/rai/up/frontier/src/ModularInstaller.php) | Modular structure installer | `install()` |
 | [Installer.php](file:///var/www/html/rai/up/frontier/src/Contracts/Installer.php) | Installer contract | `install()` |
 | [Component.php](file:///var/www/html/rai/up/frontier/src/Enums/Component.php) | Component enum | - |
 | [InteractsWithInstaller.php](file:///var/www/html/rai/up/frontier/src/Traits/InteractsWithInstaller.php) | Command execution trait | `runCommands()` |

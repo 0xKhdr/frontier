@@ -7,22 +7,22 @@ namespace Frontier;
 use function Laravel\Prompts\info;
 
 /**
- * Installer for the Frontier Actions component.
+ * Installer for the Frontier Repositories component.
  */
-class ActionsInstaller extends BaseInstaller
+class RepositoryInstaller extends BaseInstaller
 {
     /** @var array<int, string> Commands to execute */
     protected array $commands = [
-        'composer require frontier/action',
+        'composer require frontier/repository',
     ];
 
     /**
-     * Install the Actions component.
+     * Install the Repositories component.
      */
     public function install(): void
     {
-        info('🚀 Installing Frontier Actions');
+        info('🚀 Installing Frontier Repositories');
         $this->runCommands($this->commands);
-        info('Actions installed successfully.');
+        info('Repositories installed successfully.');
     }
 }
